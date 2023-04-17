@@ -24,7 +24,8 @@ function Calculator() {
 	const addToEquation = (n: string): void => setEquation(equation + n);
 	const backspace = (): void => setEquation(String(equation).slice(0, -1));
 	const clear = (): void => setEquation("");
-	const solve = (): void => setEquation(equation ? eval(equation) : "");
+	const solve = (): void =>
+		setEquation(equation.length >= 1 ? eval(equation) : "");
 
 	const keyboardHandler = (event: KeyboardEvent): void => {
 		const key: string = event.key,
@@ -46,6 +47,8 @@ function Calculator() {
 			default:
 				break;
 		}
+
+		console.log(equation);
 	};
 
 	useEffect(() => {
